@@ -1,13 +1,13 @@
 var express = require('express');
-const SerialPort = require('serialport');
-const port = new SerialPort('/dev/tty-usbserial1', {
-  baudRate: 115200
-});
 var router = express.Router();
+const indexController = require('../controllers/indexController');
+
+const {
+  catchErrors
+} = require('../handlers/errorHandlers');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', indexController.load);
+
 
 module.exports = router;
