@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const indexController = require('../controllers/indexController');
 
 const {
@@ -7,7 +7,7 @@ const {
 } = require('../handlers/errorHandlers');
 
 /* GET home page. */
-router.get('/', indexController.load);
+router.get('/', catchErrors(indexController.load));
 
 
 module.exports = router;
