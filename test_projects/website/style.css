@@ -1,0 +1,55 @@
+#dashboard-container{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.card-title{
+    padding: 25px;
+    text-align: center;
+    color: white;
+    background-color: #343a40;
+    margin-bottom: 0px;
+}
+
+.card-image
+{
+    width: 100%;
+    height: 500px;
+    border:1px solid black;
+    background-color: red;
+}
+
+.card-body{
+    background-color: #343a40;
+}
+
+.card-body-text{
+    margin-top: -10px;
+    text-align: center;
+    color: white;
+}
+
+.card-nummerplate{
+    border-radius: 15px;
+    height: 50px;
+    width: 300px;
+    background-color: #ffcc33;
+    border:1px solid black;
+    margin: auto;
+}
+
+.card-nummerplate-text{
+    margin-top: 2.5px;
+    text-align: center;
+}
+
+.card-body-time{
+    text-align: center;
+    color: white;
+    margin-top: 5px;
+}
+
+#TableHistory{
+    text-align: center;
+}
