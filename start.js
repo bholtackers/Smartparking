@@ -25,6 +25,7 @@ mongoose.connection.once('open', function () {
 
 // import all of our models
 require('./models/User');
+require('./models/Car');
 
 
 // Start our app!

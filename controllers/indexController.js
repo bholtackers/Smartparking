@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Car = mongoose.model('Car');
+
 const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
 const port = new SerialPort('COM5', {
@@ -23,7 +26,7 @@ exports.dashboard = async (req, res) => {
         title: 'dashboard',
         spaces: [{
                 id: 1,
-                numberplate: 'BH-24-102'
+                numberplate: 'BH-24-02'
             },
             {
                 id: 2,
