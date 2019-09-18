@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
 const colors = require('colors');
-
+const Settings = {
+  autoIndex: false, // Don't build indexes
+  reconnectTries: 5, // Never stop trying to reconnect
+  reconnectInterval: 500, // Reconnect every 500ms
+  poolSize: 10, // Maintain up to 10 socket connections
+  // If not connected, return errors immediately rather than waiting for reconnect
+  bufferMaxEntries: 0,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
 
 // Connect to our Database and handle any bad connections
-mongoose.connect('mongodb://xvLunatic:H0lt8ck3r5@ds048279.mlab.com:48279/smartparking', {
-  useNewUrlParser: true
-});
+mongoose.connect('mongodb://smartparking:smartparking1@ds048279.mlab.com:48279/smartparking', Settings);
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', (err) => {
   console.error(`ERROR: → ${err.message}`.red);

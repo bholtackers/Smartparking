@@ -1,0 +1,11 @@
+mixin parkingspace(space)
+    .col-md-3
+        .card.mb-3
+            h4.card-title Parkeer plaats #{space.id}
+            svg.card-image
+            .card-body
+                h4.card-body-text Nummerplaat: 
+                .card-nummerplate
+                    h2.card-nummerplate-text #{space.numberplate}
+                h4.card-body-time Geparkeerde tijd:
+                h4.card-body-time 00:00:00

@@ -2,6 +2,33 @@ doctype html
 html
   head
     title= `${title} | ${h.siteName}`
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='keywords', content='Smartparking')
+    meta(name='description', content='The online smartparking system')
+    meta(name='copyright', content='All rights deserverd by Job & Bram')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css')
+    link(rel='stylesheet', href='https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='shortcut icon', href=`${h.logo}`)
   body
+    block header
+      header
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+          a.navbar-brand(href='/dashboard')
+            img.d-inline-block.align-top(src=`${h.logo}` width='50' height='50' alt='logo')
+          a.navbar-brand(href='/dashboard') Smartparking
+          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarNav.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              each item in h.menu
+                li.nav-item
+                  a.nav-link(href=item.slug, class=(currentPath.startsWith(item.slug) ? 'nav-link active' : ''))
+                    span #{item.title}
+            ul.form-inline.my-1.my-lg-0
+              ul.navbar-nav.mr-auto
+                li.nav-item
+                  a.nav-link(href='/admin') Admin Panel
+
     block content

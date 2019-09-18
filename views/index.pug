@@ -1,5 +1,11 @@
 extends layout
 
+include mixins/_parkingSpace
+
+
 block content
-  h1= title
-  p Welcome to #{title}
+  #dashboard-container
+    #dashboard-container-row.row
+      each space in spaces
+        +parkingspace(space)
+

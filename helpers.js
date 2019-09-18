@@ -12,11 +12,20 @@ exports.moment = require('moment');
 exports.dump = (obj) => JSON.stringify(obj, null, 2);
 
 // inserting an SVG
-exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
+exports.icon = (name) => fs.readFileSync(`./public/images/${name}.svg`);
+exports.logo = './images/logo.png'
 
 // Some details about the site
 exports.siteName = `Smartparking!`;
 
 exports.menu = [
   //{ slug: '/stores', title: 'Stores', icon: 'store', },
+  {
+    slug: '/dashboard',
+    title: 'Dashboard'
+  },
+  {
+    slug: '/history',
+    title: 'History'
+  },
 ];

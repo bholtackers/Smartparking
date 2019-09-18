@@ -7,7 +7,9 @@ const {
 } = require('../handlers/errorHandlers');
 
 /* GET home page. */
-router.get('/', catchErrors(indexController.load));
+router.get('/', catchErrors(indexController.dashboard));
+router.get('/dashboard', catchErrors(indexController.dashboard));
+router.get('/history', catchErrors(indexController.history));
 
 
 module.exports = router;
