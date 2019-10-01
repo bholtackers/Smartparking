@@ -28,7 +28,7 @@ NfcAdapter nfc3 = NfcAdapter(pn532_i2c);
 #define I2CMulti_Addr 0x70
 
 I2CMux I2CMulti(I2CMulti_Addr);
-int selected_nfc = 0;
+int selected_nfc = 1;
 int counter = 0;
 
 bool carParked0 = false;
@@ -65,20 +65,19 @@ void loop() {
     readNFC(selected_nfc);
   }
 
-  if ( (counter % 3) == 0 && counter != 0) {
+  if ( (counter % 1) == 0 && counter != 0) {
     switchNFC();
   }
   counter++;
-  delay(200);
+  delay(20);
 }
 
 void readNFC(int selected) {
 
   if (selected == 0) {
-    Serial.println("--------------------NFC 0--------------------");
-
     if (nfc0.tagPresent())
     {
+      Serial.println("Car found on space 0!");
       NfcTag tag = nfc0.read();
       if (tag.hasNdefMessage()) // every tag won't have a message
       {
@@ -99,13 +98,23 @@ void readNFC(int selected) {
             payloadAsString += (char)payload[c + 3];
           }
           Serial.println(payloadAsString);
+          carParked0 = true;
         }
+      }
+    } else {
+      if (carParked0 == false) {
+        Serial.println(carParked0);
+        Serial.println("No car found on space 0");
+      }
+      else {
+        carParked0 = false;
+        Serial.println("Car left parking space 0");
       }
     }
   } else if (selected == 1) {
-    Serial.println("--------------------NFC 1--------------------");
     if (nfc1.tagPresent())
     {
+      Serial.println("Car found on space 1!");
       NfcTag tag = nfc1.read();
       if (tag.hasNdefMessage()) // every tag won't have a message
       {
@@ -128,11 +137,13 @@ void readNFC(int selected) {
           Serial.println(payloadAsString);
         }
       }
+    } else {
+      Serial.println("No car found on space 1");
     }
   } else if (selected == 2) {
-    Serial.println("--------------------NFC 2--------------------");
     if (nfc2.tagPresent())
     {
+      Serial.println("Car found on space 2!");
       NfcTag tag = nfc2.read();
       if (tag.hasNdefMessage()) // every tag won't have a message
       {
@@ -155,11 +166,13 @@ void readNFC(int selected) {
           Serial.println(payloadAsString);
         }
       }
+    }  else {
+      Serial.println("No car found on space 2");
     }
   } else if (selected == 3) {
-    Serial.println("--------------------NFC 3--------------------");
     if (nfc3.tagPresent())
     {
+      Serial.println("Car found on space 3!");
       NfcTag tag = nfc3.read();
       if (tag.hasNdefMessage()) // every tag won't have a message
       {
@@ -169,26 +182,22 @@ void readNFC(int selected) {
         for (int i = 0; i < recordCount; i++)
         {
           NdefRecord record = message.getRecord(i);
-          // NdefRecord record = message[i]; // alternate syntax
-
-
-          // The TNF and Type should be used to determine how your application processes the payload
           // There's no generic processing for the payload, it's returned as a byte[]
           int payloadLength = record.getPayloadLength();
           byte payload[payloadLength];
           record.getPayload(payload);
 
-          // Print the Hex and Printable Characters
-
-          // Force the data into a String (might work depending on the content)
-          // Real code should use smarter processing
+          // Force the data into a String
           String payloadAsString = "";
           for (int c = 0; c < payloadLength - 3; c++) {
-            payloadAsString += (char)payload[c - 3];
+            payloadAsString += (char)payload[c + 3];
           }
           Serial.println(payloadAsString);
+
         }
       }
+    }  else {
+      Serial.println("No car found on space 3");
     }
   }
 }
