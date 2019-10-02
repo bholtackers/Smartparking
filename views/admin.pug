@@ -1,0 +1,22 @@
+extends layout
+
+include mixins/_numberplates
+
+block content
+    main#Main
+    #dashboard-container
+        form(action="/updateParkingspots" method="POST")
+            .form-group
+                h3#form-tile NumberPlates:
+
+                    each plate in plates
+                        +numberPlate(plate)
+                br
+                small#NumberplatesHelp.form-text.text-muted Type here the numberplate of the car
+            .form-group
+                label(for='Price') Parking Price
+                input#Price.form-control.price(type='number' value=`${plates[0].price}` name='Price' aria-describedby='PriceHelp' min='0.00' max='100.00' step='0.01' placeholder='0.00')
+                small#PriceHelp.form-text.text-muted Type here the price per hour, the price is in &euro;
+            button.btn.btn-danger(type='reset') Reset
+            p.marginTop1
+            button.btn.btn-success(type='submit') Save

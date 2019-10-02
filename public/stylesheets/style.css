@@ -53,3 +53,34 @@
 #TableHistory{
   text-align: center;
 }
+
+#form-tile{
+  margin: -10px 0px;
+}
+
+.numberplate{
+  margin: 5px 0px;
+  background-color: #ffcc33;
+  border:1px solid black;
+  font-weight: bold;
+  font-size: large;
+  color: black;
+}
+
+.price{
+  border:1px solid black;
+  font-size: large;
+  color: black;
+}
+
+.font1rem{
+  font-size: 1rem;
+}
+
+.marginTop1{
+  margin-top: 1rem;
+}
+
+.hidden {
+  display: none;
+}

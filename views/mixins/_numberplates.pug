@@ -1,0 +1,7 @@
+mixin numberPlate(plate)
+            - var NumberplateId = `Numberplate${plate.spot}`
+            - var plateId = `_id${plate.spot}`
+            br
+            label.font1rem(for=`${NumberplateId}`) Numberplate #{plate.spot}: 
+            input.form-control.numberplate(type='text' name=`${NumberplateId}` data-specialID=`${plate._id}` id=`${NumberplateId}` aria-describedby='NumberplatesHelp' placeholder='Enter number plate' value=`${plate.numberplate}`)
+            input.hidden(name=`${plateId}` value=`${plate._id}`)
