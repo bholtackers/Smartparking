@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const main = require('../public/javascripts/main');
 const Parkingspot = mongoose.model('Parkingspot');
 const colors = require('colors');
 const SerialPort = require('serialport');
@@ -19,12 +20,8 @@ port.on("error", (err) => {
     console.log('Error: ', err.message);
 })
 parser.on('data', data => {
-    yeet(data)
+    sendData(data);
 });
-
-exports.test = async (req,res) => {
-    res.redirect('/admin');
-}
 
 exports.updateNumberplates = async (req, res, next) => {
     console.log(req.body);
@@ -47,6 +44,10 @@ exports.updateNumberplates = async (req, res, next) => {
     res.redirect('/admin');
 }
 
+exports.goToDash = async (req, res) => {
+    res.redirect('/dashboard');
+}
+
 exports.dashboard = async (req, res) => {
     const spaces = await Parkingspot.find();
     res.render('index', {
@@ -67,6 +68,6 @@ exports.admin = async (req, res) => {
     });
 }
 
-yeet = (data) => {
-    console.log('got word from arduino:', data);
+sendData = (data) => {
+    main.testlog(data);
 }
