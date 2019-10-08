@@ -12,6 +12,7 @@
     "connect-mongo": "^3.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "easytimer.js": "^4.0.1",
     "es6-promisify": "^6.0.2",
     "express": "~4.16.1",
     "express-session": "^1.16.2",

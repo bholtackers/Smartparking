@@ -1,6 +1,6 @@
 mixin parkingspace(space)
-    .col-md-3
-        .card.mb-3
+    div.col-md-3
+        div.card.mb-3(id=`${space.numberplate}`)
             h4.card-title Parkeer plaats #{space.spot}
             svg.card-image
             .card-body
