@@ -12,8 +12,6 @@ const promisify = require('util-promisify');
 const flash = require('connect-flash');
 const expressValidator = require('express-validator');
 
-
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const helpers = require('./helpers');

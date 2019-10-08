@@ -1,14 +1,24 @@
+var GlobalJsonData;
+
 exports.testlog = (data) => {
     try {
         var jsonData = JSON.parse(data);
     } catch (error) {
         return;
     }
-    return handleData(jsonData);
+    if (typeof jsonData == 'number') {
+        console.log(jsonData);
+        return;
+    } else {
+        GlobalJsonData = jsonData;
+        return handleData(jsonData);
+    }
 }   
 
 var Timer = require('easytimer.js').Timer;
 var color = require('colors');
+
+const start = require('../../start');
 
 var timerSpot1 = new Timer();
 var timerSpot2 = new Timer();
@@ -17,10 +27,23 @@ var timerSpot4 = new Timer();
 
 
 function handleData(data) {
-    console.log(data);
-    if (data.Car != null) {
-        console.log(document.getElementById(data.Car));
+    getPlate(data.Spot);
+}
+
+exports.getSpotPlate = (numberplateIO) => {
+    if (numberplateIO == GlobalJsonData.Car) {
+        console.log("Yes");
+    } else {
+        start.send("alert:"+GlobalJsonData.Car+":Wrong spot, please go to your spot!");
+        console.log("Wrong spot, please go to your spot!");
     }
+}
+
+function getPlate(spotNumber){
+    start.send("getPlate:"+spotNumber);
+}
+
+function handleTimer(data){
     switch (data.Status) {
         case "parked":
             timerSpot1.start();
@@ -33,23 +56,6 @@ function handleData(data) {
             break;
         case "left":
             timerSpot1.stop();
-            break;
-    }
-}
-
-function selectSpot(spotNumber, numberplate) {
-    switch (spotNumber) {
-        case '1':
-            if (numberplate)
-                break;
-        case '2':
-
-            break;
-        case '3':
-
-            break;
-        case '4':
-
             break;
     }
 }

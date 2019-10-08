@@ -36,3 +36,23 @@ app.set('port', 7777);
 const server = app.listen(app.get('port'), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
+
+const main = require('./public/javascripts/main');
+
+const io = require('socket.io').listen(server)
+
+io.on('connection', (socket) => {
+  socket.on('chatter', (message) => {
+    main.getSpotPlate(message);
+  })
+})
+
+exports.send = (data) => {
+  var dataArray = data.split(":");
+  if (dataArray[0] == "getPlate") {
+    io.emit('chatter', dataArray);
+  }
+  if (dataArray[0] == "alert") {
+    io.emit('chatter', dataArray);
+  }
+}

@@ -4,8 +4,31 @@ include mixins/_parkingSpace
 
 
 block content
+  - var numberplate = `${spaces[0].numberplate}`
   #dashboard-container
     #dashboard-container-row.row
       each space in spaces
         +parkingspace(space)
-
+  script.
+    const socket = io();
+    socket.on('chatter', function(message) {
+      if (message[0] == "getPlate"){
+        switch (message[1]) {
+          case "1":
+            socket.emit('chatter', $('#1')[0].children[0].id);
+            break;
+          case "2":
+            socket.emit('chatter', $('#2')[0].children[0].id);
+            break;
+          case "3":
+            socket.emit('chatter', $('#3')[0].children[0].id);
+            break;
+          case "4":
+            socket.emit('chatter', $('#4')[0].children[0].id); 
+            break;
+        }
+      }
+      if (message[0] == "alert"){
+        alert(message[1] + "\n"+ message[2]);
+      }
+    });
