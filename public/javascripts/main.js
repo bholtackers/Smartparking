@@ -7,13 +7,12 @@ exports.testlog = (data) => {
         return;
     }
     if (typeof jsonData == 'number') {
-        console.log(jsonData);
         return;
     } else {
         GlobalJsonData = jsonData;
         return handleData(jsonData);
     }
-}   
+}
 
 var Timer = require('easytimer.js').Timer;
 var color = require('colors');
@@ -27,35 +26,96 @@ var timerSpot4 = new Timer();
 
 
 function handleData(data) {
-    getPlate(data.Spot);
-}
-
-exports.getSpotPlate = (numberplateIO) => {
-    if (numberplateIO == GlobalJsonData.Car) {
-        console.log("Yes");
+    if (data.Status == "parked") {
+        getPlate(data.Spot);
     } else {
-        start.send("alert:"+GlobalJsonData.Car+":Wrong spot, please go to your spot!");
-        console.log("Wrong spot, please go to your spot!");
+        handleTimer(data);
     }
 }
 
-function getPlate(spotNumber){
-    start.send("getPlate:"+spotNumber);
+//STUUR CONSTANT NUMMERBORD MEE, GLOBAL WERK NIET FATSOENDELIJK
+exports.getSpotPlate = (numberplateIO) => {
+    console.log("DEZE " + numberplateIO);
+    if (numberplateIO == GlobalJsonData.Car) {
+        handleTimer(GlobalJsonData);
+    } else if (GlobalJsonData.Car != undefined && GlobalJsonData.Car != "undefined") {
+        start.send("alert:" + GlobalJsonData.Car + ":Wrong spot, please go to your spot!");
+    }
 }
 
-function handleTimer(data){
+function getPlate(spotNumber) {
+    start.send("getPlate:" + spotNumber);
+}
+
+function handleTimer(data) {
     switch (data.Status) {
         case "parked":
-            timerSpot1.start();
-            timerSpot1.addEventListener('secondsUpdated', function (e) {
-                console.log(timerSpot1.getTimeValues().toString());
-                // $('#'+data.numberplate+'').html(timerSpot1.getTimeValues().toString());
-            });
-            break;
-        case "still parked":
+            switch (data.Spot) {
+                case "1":
+                    timerSpot1.start();
+                    timerSpot1.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot1.getTimeValues().toString())
+                    });
+                    break;
+                case "2":
+                    timerSpot2.start();
+                    timerSpot2.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot2.getTimeValues().toString())
+                    });
+                    break;
+                case "3":
+                    timerSpot3.start();
+                    timerSpot3.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot3.getTimeValues().toString())
+                    });
+                    break;
+                case "4":
+                    timerSpot4.start();
+                    timerSpot4.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot4.getTimeValues().toString())
+                    });
+                    break;
+            }
+
             break;
         case "left":
-            timerSpot1.stop();
+            switch (data.Spot) {
+                case "1":
+                    timerSpot1.stop();
+                    break;
+                case "2":
+                    timerSpot2.stop();
+                    break;
+                case "3":
+                    timerSpot3.stop();
+                    break;
+                case "4":
+                    timerSpot4.stop();
+                    break;
+            }
             break;
+        case "Still parked":
+            switch (data.Spot) {
+                case "1":
+                    timerSpot1.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot1.getTimeValues().toString())
+                    });
+                    break;
+                case "2":
+                    timerSpot2.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot2.getTimeValues().toString())
+                    });
+                    break;
+                case "3":
+                    timerSpot3.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot3.getTimeValues().toString())
+                    });
+                    break;
+                case "4":
+                    timerSpot4.addEventListener('secondsUpdated', function (e) {
+                        start.send("updateTime:" + data.Spot + ":" + timerSpot4.getTimeValues().toString())
+                    });
+                    break;
+            }
     }
 }

@@ -40,6 +40,7 @@ const server = app.listen(app.get('port'), () => {
 const main = require('./public/javascripts/main');
 
 const io = require('socket.io').listen(server)
+io.sockets.setMaxListeners(0);
 
 io.on('connection', (socket) => {
   socket.on('chatter', (message) => {
@@ -53,6 +54,12 @@ exports.send = (data) => {
     io.emit('chatter', dataArray);
   }
   if (dataArray[0] == "alert") {
+    io.emit('chatter', dataArray);
+  }
+  if (dataArray[0] == "updateTime") {
+    io.emit('chatter', dataArray);
+  }
+  if (dataArray[0] == "Leave") {
     io.emit('chatter', dataArray);
   }
 }

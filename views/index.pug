@@ -31,4 +31,29 @@ block content
       if (message[0] == "alert"){
         alert(message[1] + "\n"+ message[2]);
       }
+      if (message[0] == "updateTime"){
+        switch (message[1]){
+          case "1":
+            let timeString1 = message[2] + ":" + message[3] + ":" + message[4];
+            let element1 = $('#1')[0].children[0].children[2].children[3];
+            console.log($('#1')[0].children[0].children);
+            element1.textContent = timeString1;
+            break;
+          case "2":
+            let timeString2 = message[2] + ":" + message[3] + ":" + message[4];
+            let element2 = $('#2')[0].children[0].children[2].children[3];
+            element2.textContent = timeString2;
+            break;
+          case "3":
+            let timeString3 = message[2] + ":" + message[3] + ":" + message[4];
+            let element3 = $('#3')[0].children[0].children[2].children[3];
+            element3.textContent = timeString3;
+            break;
+          case "4":
+            let timeString4 = message[2] + ":" + message[3] + ":" + message[4];
+            let element4 = $('#4')[0].children[0].children[2].children[3];
+            element4.textContent = timeString4;
+            break;
+        }
+      }
     });
