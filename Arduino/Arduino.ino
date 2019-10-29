@@ -27,7 +27,7 @@ NfcAdapter nfc3 = NfcAdapter(pn532_i2c);
 #define I2CMulti_Addr 0x70
 
 I2CMux I2CMulti(I2CMulti_Addr);
-int selected_nfc = 0;
+int selected_nfc = 4;
 int counter = 0;
 
 bool carParked0 = false;
