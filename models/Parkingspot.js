@@ -12,7 +12,7 @@ const parkingspotSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        required: 'You must supply a spot'
+        required: 'You must supply a price'
     }
 });
 

@@ -1,80 +1,83 @@
-#dashboard-container{
-  margin-top: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
+#dashboard-container {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
-.card-title{
-  padding: 25px;
-  text-align: center;
-  color: white;
-  background-color: #343a40;
-  margin-bottom: 0px;
+.card-title {
+    padding: 25px;
+    text-align: center;
+    color: white;
+    background-color: #343a40;
+    margin-bottom: 0px;
 }
 
-.card-image
-{
-  width: 100%;
-  height: 275px;
-  border:1px solid black;
-  background-color: green;
+.card-image {
+    width: 100%;
+    height: 275px;
+    border: 1px solid black;
+    background-color: green;
 }
 
-.card-body{
-  background-color: #343a40;
+.card-body {
+    background-color: #343a40;
 }
 
-.card-body-text{
-  margin-top: -10px;
-  text-align: center;
-  color: white;
+.card-body-text {
+    margin-top: -10px;
+    text-align: center;
+    color: white;
 }
 
-.card-nummerplate-text{
-  border-radius: 15px;
-  text-align: center;
-  color: black;
-  background-color: #ffcc33;
-  margin-top: 5px;
+.card-nummerplate-text {
+    border-radius: 15px;
+    text-align: center;
+    color: black;
+    background-color: #ffcc33;
+    margin-top: 5px;
 }
 
-.card-body-time{
-  text-align: center;
-  color: white;
-  margin-top: 5px;
+.card-body-time {
+    text-align: center;
+    color: white;
+    margin-top: 5px;
 }
 
-#TableHistory{
-  text-align: center;
+#TableHistory {
+    text-align: center;
 }
 
-#form-tile{
-  margin: -10px 0px;
+#form-tile {
+    margin: -10px 0px;
 }
 
-.numberplate{
-  margin: 5px 0px;
-  background-color: #ffcc33;
-  border:1px solid black;
-  font-weight: bold;
-  font-size: large;
-  color: black;
+.numberplate {
+    margin: 5px 0px;
+    background-color: #ffcc33;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: large;
+    color: black;
 }
 
-.price{
-  border:1px solid black;
-  font-size: large;
-  color: black;
+.price {
+    border: 1px solid black;
+    font-size: large;
+    color: black;
 }
 
-.font1rem{
-  font-size: 1rem;
+.font1rem {
+    font-size: 1rem;
 }
 
-.marginTop1{
-  margin-top: 1rem;
+.marginTop1 {
+    margin-top: 1rem;
 }
 
 .hidden {
-  display: none;
+    display: none;
+}
+
+.red {
+    background-color: red;
 }

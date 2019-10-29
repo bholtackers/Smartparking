@@ -18,6 +18,7 @@ var Timer = require('easytimer.js').Timer;
 var color = require('colors');
 
 const start = require('../../start');
+const indexController = require('../../controllers/indexController');
 
 var timerSpot1 = new Timer();
 var timerSpot2 = new Timer();
@@ -33,7 +34,6 @@ function handleData(data) {
     }
 }
 
-//STUUR CONSTANT NUMMERBORD MEE, GLOBAL WERK NIET FATSOENDELIJK
 exports.getSpotPlate = (numberplateIO) => {
     console.log("DEZE " + numberplateIO);
     if (numberplateIO == GlobalJsonData.Car) {
@@ -81,15 +81,24 @@ function handleTimer(data) {
         case "left":
             switch (data.Spot) {
                 case "1":
+                    var duration = timerSpot1.getTimeValues().toString();
+                    indexController.addHistorySpot(duration, data.Car);
+                    start.send("Leave:1:" + data.Car);
                     timerSpot1.stop();
                     break;
                 case "2":
+                    indexController.addHistorySpot(duration, data.Car);
+                    start.send("Leave:2:" + data.Car);
                     timerSpot2.stop();
                     break;
                 case "3":
+                    indexController.addHistorySpot(duration, data.Car);
+                    start.send("Leave:3:" + data.Car);
                     timerSpot3.stop();
                     break;
                 case "4":
+                    indexController.addHistorySpot(duration, data.Car);
+                    start.send("Leave:4:" + data.Car);
                     timerSpot4.stop();
                     break;
             }

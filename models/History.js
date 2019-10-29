@@ -3,11 +3,11 @@ mongoose.Promise = global.Promise;
 
 const historySchema = new mongoose.Schema({
     Entry: {
-        type: Date,
+        type: String,
         required: true,
     },
     Exit: {
-        type: Date,
+        type: String,
         default: Date.now,
         required: true,
     },
@@ -19,14 +19,14 @@ const historySchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    numberplate: {
+    PricePerHour: {
+        type: Number,
+        required: true,
+    },
+    Numberplate: {
         type: String,
         required: true,
     },
-    ownerId: {
-        type: String,
-        required: true,
-    }
 });
 
 

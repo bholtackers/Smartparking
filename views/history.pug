@@ -6,15 +6,19 @@ block content
             thead.thead-dark
                 tr
                     th(style='display: none;') Id
+                    th Kenteken
                     th Inrit Datum + Tijd
                     th Uitrit Datum + Tijd
                     th Totale tijd:
                     th Prijs:
+                    th Prijs Per Uur:
             tbody
-            each val in [1,2,3,4,5]
+            each val in EntireHistory
                 tr.history-tr
                     td.history-id(style='display: none;')
-                    td.history-Inrit 14-09-2019 16:39:21
-                    td.history-Uitrit 16-09-2019 12:54:34
-                    td.history-Tijd 1 uur en 56 min
-                    td.history-Prijs $5,23  
+                    td.history-Inrit #{val.Numberplate}
+                    td.history-Inrit #{val.Entry}
+                    td.history-Uitrit #{val.Exit}
+                    td.history-Tijd #{val.Duration}
+                    td.history-Prijs € #{val.Price}
+                    td.history-Prijs € #{val.PricePerHour}
