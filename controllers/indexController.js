@@ -119,7 +119,7 @@ exports.addHistorySpot = async (Duration, Numberplate) => {
 
     //Gets the price from the database
     var PricePerHour = await Parkingspot.find({
-        numberplate: Numberplate,
+        numberplate: "BH-24-02",
     }, function (err, docs) {});
     PricePerHour = PricePerHour[0].price;
 
@@ -140,7 +140,10 @@ exports.addHistorySpot = async (Duration, Numberplate) => {
         Numberplate
     });
     newHistory.save(function (err) {
-        if (err) return handleError(err);
+        if (err) {
+            console.log(err);
+            return;
+        }
     })
 }
 

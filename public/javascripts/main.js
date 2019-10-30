@@ -7,6 +7,7 @@ exports.testlog = (data) => {
         return;
     }
     if (typeof jsonData == 'number') {
+        console.log(data);
         return;
     } else {
         GlobalJsonData = jsonData;
@@ -25,6 +26,7 @@ var timerSpot2 = new Timer();
 var timerSpot3 = new Timer();
 var timerSpot4 = new Timer();
 
+var spotPlates = [];
 
 function handleData(data) {
     if (data.Status == "parked") {
@@ -36,7 +38,9 @@ function handleData(data) {
 
 exports.getSpotPlate = (numberplateIO) => {
     console.log("DEZE " + numberplateIO);
-    if (numberplateIO == GlobalJsonData.Car) {
+    var array = numberplateIO.split(":");
+    if (array[0] == GlobalJsonData.Car) {
+        spotPlates[array[1]] = array[0];
         handleTimer(GlobalJsonData);
     } else if (GlobalJsonData.Car != undefined && GlobalJsonData.Car != "undefined") {
         start.send("alert:" + GlobalJsonData.Car + ":Wrong spot, please go to your spot!");
@@ -82,23 +86,23 @@ function handleTimer(data) {
             switch (data.Spot) {
                 case "1":
                     var duration = timerSpot1.getTimeValues().toString();
-                    indexController.addHistorySpot(duration, data.Car);
-                    start.send("Leave:1:" + data.Car);
+                    indexController.addHistorySpot(duration, spotPlates[1]);
+                    start.send("Leave:1");
                     timerSpot1.stop();
                     break;
                 case "2":
-                    indexController.addHistorySpot(duration, data.Car);
-                    start.send("Leave:2:" + data.Car);
+                    indexController.addHistorySpot(duration, spotPlates[2]);
+                    start.send("Leave:2");
                     timerSpot2.stop();
                     break;
                 case "3":
-                    indexController.addHistorySpot(duration, data.Car);
-                    start.send("Leave:3:" + data.Car);
+                    indexController.addHistorySpot(duration, spotPlates[3]);
+                    start.send("Leave:3");
                     timerSpot3.stop();
                     break;
                 case "4":
-                    indexController.addHistorySpot(duration, data.Car);
-                    start.send("Leave:4:" + data.Car);
+                    indexController.addHistorySpot(duration, spotPlates[4]);
+                    start.send("Leave:4");
                     timerSpot4.stop();
                     break;
             }
