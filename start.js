@@ -38,17 +38,23 @@ const server = app.listen(app.get('port'), () => {
     console.log(`Express running → PORT ${server.address().port}`);
 });
 
+
+//connect to main js file to access its functions
 const main = require('./public/javascripts/main');
 
+//Initialze the socket io for communication
 const io = require('socket.io').listen(server)
 io.sockets.setMaxListeners(0);
 
+//IO to do something everytime it receives a message
 io.on('connection', (socket) => {
     socket.on('chatter', (message) => {
         main.getSpotPlate(message);
     })
 })
 
+//The function that get called from the main js file
+//According to the function name it gets it performs a function on the index.pug file
 exports.send = (data) => {
     var dataArray = data.split(":");
     if (dataArray[0] == "getPlate") {

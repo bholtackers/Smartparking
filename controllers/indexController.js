@@ -24,6 +24,7 @@ parser.on('data', data => {
     sendData(data);
 });
 
+//function to update the numberplates in the Database
 exports.updateNumberplates = async (req, res, next) => {
     console.log(req.body);
     const update1 = await Parkingspot.findOneAndUpdate({
@@ -65,6 +66,7 @@ exports.goToDash = async (req, res) => {
     res.redirect('/dashboard');
 }
 
+//Renders the dashboard page
 exports.dashboard = async (req, res) => {
     const spaces = await Parkingspot.find();
     res.render('index', {
@@ -72,6 +74,7 @@ exports.dashboard = async (req, res) => {
         spaces
     });
 }
+//Renders the history page
 exports.history = async (req, res) => {
     //Gets the price from the database
     var EntireHistory = await History.find();
@@ -81,6 +84,7 @@ exports.history = async (req, res) => {
     });
 }
 
+//Renders the admin page
 exports.admin = async (req, res) => {
     const plates = await Parkingspot.find();
     res.render('admin', {
@@ -89,6 +93,8 @@ exports.admin = async (req, res) => {
     });
 }
 
+
+//Adds a record to the history table
 exports.addHistorySpot = async (Duration, Numberplate) => {
 
     //turn Duration into array

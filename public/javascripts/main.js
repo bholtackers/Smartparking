@@ -1,5 +1,6 @@
 var GlobalJsonData;
 
+//recieves the data being sent from the indexcontroller
 exports.testlog = (data) => {
     try {
         var jsonData = JSON.parse(data);
@@ -15,12 +16,15 @@ exports.testlog = (data) => {
     }
 }
 
+//Load in timer module
 var Timer = require('easytimer.js').Timer;
 var color = require('colors');
 
+//include the files to use their functions
 const start = require('../../start');
 const indexController = require('../../controllers/indexController');
 
+//Initialize the timers
 var timerSpot1 = new Timer();
 var timerSpot2 = new Timer();
 var timerSpot3 = new Timer();
@@ -28,6 +32,7 @@ var timerSpot4 = new Timer();
 
 var spotPlates = [];
 
+//Function to decide what to de with the sent commands
 function handleData(data) {
     if (data.Status == "parked") {
         getPlate(data.Spot);
@@ -36,6 +41,7 @@ function handleData(data) {
     }
 }
 
+//Looks up the spotPlates
 exports.getSpotPlate = (numberplateIO) => {
     console.log("DEZE " + numberplateIO);
     var array = numberplateIO.split(":");
@@ -47,10 +53,12 @@ exports.getSpotPlate = (numberplateIO) => {
     }
 }
 
+//Asks the server to get the plate accourding to a spot number
 function getPlate(spotNumber) {
     start.send("getPlate:" + spotNumber);
 }
 
+//Decides what to do every time a car enters, stays or leaves
 function handleTimer(data) {
     switch (data.Status) {
         case "parked":

@@ -10,6 +10,7 @@ block content
       each space in spaces
         +parkingspace(space)
   script.
+    //- Performs the functions that get called from start.js 
     const socket = io();
     socket.on('chatter', function(message) {
       if (message[0] == "getPlate"){
@@ -32,6 +33,7 @@ block content
         alert(message[1] + "\n"+ message[2]);
       }      
       if (message[0] == "Leave"){
+        //Resets the spots
         alert("Car on spot " +message[1]+"\n Has left their parkingspot.");
         switch (message[1]){
           case "1":
@@ -57,6 +59,7 @@ block content
         }
       }
       if (message[0] == "updateTime"){
+        //- Adjusts the time on the page per spot
         switch (message[1]){
           case "1":
             let timeString1 = message[2] + ":" + message[3] + ":" + message[4];
